@@ -55,7 +55,22 @@ void deposit_money(){
     printf("Enter the amount needed to be deposited in your account:");
     scanf("%d",&depo);
     balance+=depo;
-    printf("Money deposired");
+    printf("Money deposited");
     printf("\nCurrent bank balance:%d",balance);
     fprintf(ptr,"Rs%d has been successfully deposited to your bank on %s . Current bank balance is %d",depo,ctime(&tm),balance);
+}
+void withdraw_money(){
+    time_t tm;
+    time(&tm);
+    FILE *ptr=fopen("Account.txt","a");
+    printf("Enter the amount needed to be withdrawn in your account:");
+    scanf("%d",&depo);
+    if (depo>balance){
+        printf("Your bank balance is insufficient for the withdrawal");
+        return;
+    }
+    balance-=depo;
+    printf("Money withdrawn");
+    printf("\nCurrent bank balance:%d",balance);
+    fprintf(ptr,"Rs%d has been successfully withdrawn from your bank on %s . Current bank balance is %d",depo,ctime(&tm),balance);
 }
