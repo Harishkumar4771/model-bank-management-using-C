@@ -10,12 +10,17 @@ int main(){
     printf("Enter username:");
     fgets(name,sizeof(name),stdin);
     name[strlen(name)-1]='\0';
-    printf("Enter accound number:");
-    scanf("%d",&accno); 
+    printf("Enter account number:");
+    while(scanf("%d",&accno)!=1){
+        printf("Enter a valid input, the input should be an integer");
+        while(getchar()!='\n'); }
     while (1){
         menu();
-        printf("\nEnter choice");
-        scanf("%d",&choice);
+        printf("\nEnter choice:");
+        if(scanf("%d",&choice)!=1){
+            printf("Enter a valid input, the input should be an integer");
+            while(getchar()!='\n'){/*do nothing*/};continue;
+        };
         switch (choice){
             case 1:
                 deposit_money();
@@ -95,7 +100,7 @@ void transfer_money(){
     scanf("%d",&trans);int ac;
     printf("\nEnter the account number of the receviver:");
     scanf("%d",&ac);
-    if(depo>balance){
+    if(trans>balance){
         printf("Your bank balance is insufficient for the withdrawal");
         return;
     }
